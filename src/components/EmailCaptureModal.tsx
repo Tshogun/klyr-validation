@@ -1,12 +1,44 @@
+"use client";
+
 import { useState } from "react";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Check } from "lucide-react";
+import { z } from "zod";
 import { toast } from "@/hooks/use-toast";
+import { createClient } from "@supabase/supabase-js";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
+
+// Supabase client
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
+
+// Zod schema for validation
+const formSchema = z.object({
+  email: z.string().email(),
+  role: z.string().optional(),
+  meetings: z.string().optional(),
+  suggestions: z.string().optional(),
+  source: z.string().optional(),
+});
 
 interface EmailCaptureModalProps {
   open: boolean;
@@ -14,7 +46,11 @@ interface EmailCaptureModalProps {
   source?: string;
 }
 
-export const EmailCaptureModal = ({ open, onOpenChange, source = "general" }: EmailCaptureModalProps) => {
+export const EmailCaptureModal = ({
+  open,
+  onOpenChange,
+  source = "general",
+}: EmailCaptureModalProps) => {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [meetings, setMeetings] = useState("");
@@ -24,37 +60,56 @@ export const EmailCaptureModal = ({ open, onOpenChange, source = "general" }: Em
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+
+    const result = formSchema.safeParse({
+      email,
+      role,
+      meetings,
+      suggestions,
+      source,
+    });
+
+    if (!result.success) {
       toast({
-        title: "Invalid email",
-        description: "Please enter a valid email address.",
+        title: "Invalid input",
+        description: result.error.issues[0].message,
         variant: "destructive",
       });
       return;
     }
 
     setIsLoading(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    console.log("Waitlist submission:", { email, role, meetings, suggestions, source });
-    
-    // TODO: Store in Supabase once Cloud is enabled
-    
-    setIsLoading(false);
-    setIsSubmitted(true);
 
+    const { error } = await supabase.from("waitlist_submissions").insert([
+      {
+        email,
+        role,
+        meetings,
+        suggestions,
+        source,
+      },
+    ]);
+
+    setIsLoading(false);
+
+    if (error) {
+      toast({
+        title: "Submission failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitted(true);
     toast({
-      title: "Success! 🎉",
-      description: "You're on the list! Check your email for confirmation.",
+      title: "You're on the list! 🎉",
+      description: "We'll update you when we launch.",
     });
   };
 
   const handleClose = () => {
     onOpenChange(false);
-    // Reset after animation completes
     setTimeout(() => {
       setIsSubmitted(false);
       setEmail("");
@@ -72,21 +127,22 @@ export const EmailCaptureModal = ({ open, onOpenChange, source = "general" }: Em
             <DialogHeader>
               <DialogTitle className="text-2xl font-bold">Almost There!</DialogTitle>
               <DialogDescription className="text-base">
-                Klyr is currently in development. We're targeting a Q1 2026 launch. Join the waitlist to:
+                Klyr is currently in development. We're targeting a Q1 2026 launch. Join the
+                waitlist to:
               </DialogDescription>
             </DialogHeader>
-            
+
             <ul className="space-y-2 my-4">
               <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                <Check className="w-5 h-5 text-accent mt-1" />
                 <span className="text-sm">Get 50% off for 3 months</span>
               </li>
               <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                <Check className="w-5 h-5 text-accent mt-1" />
                 <span className="text-sm">Be first to access beta</span>
               </li>
               <li className="flex items-start gap-2">
-                <Check className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
+                <Check className="w-5 h-5 text-accent mt-1" />
                 <span className="text-sm">Help shape the product</span>
               </li>
             </ul>
@@ -101,7 +157,6 @@ export const EmailCaptureModal = ({ open, onOpenChange, source = "general" }: Em
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full"
                 />
               </div>
 
@@ -128,8 +183,8 @@ export const EmailCaptureModal = ({ open, onOpenChange, source = "general" }: Em
                     <SelectValue placeholder="Select meeting frequency" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="5-10">5-10 meetings</SelectItem>
-                    <SelectItem value="11-20">11-20 meetings</SelectItem>
+                    <SelectItem value="5-10">5–10 meetings</SelectItem>
+                    <SelectItem value="11-20">11–20 meetings</SelectItem>
                     <SelectItem value="21+">21+ meetings</SelectItem>
                   </SelectContent>
                 </Select>
@@ -139,17 +194,16 @@ export const EmailCaptureModal = ({ open, onOpenChange, source = "general" }: Em
                 <Label htmlFor="suggestions">What features would you like to see? (Optional)</Label>
                 <Textarea
                   id="suggestions"
-                  placeholder="e.g., Slack integration, custom meeting rules, team analytics..."
+                  placeholder="e.g., Slack integration, analytics, calendar rules..."
                   value={suggestions}
                   onChange={(e) => setSuggestions(e.target.value)}
-                  className="min-h-[80px] resize-none"
                 />
               </div>
 
-              <Button 
-                type="submit" 
-                variant="cta" 
-                size="lg" 
+              <Button
+                type="submit"
+                variant="cta"
+                size="lg"
                 className="w-full font-semibold"
                 disabled={isLoading}
               >
