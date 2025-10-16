@@ -25,13 +25,14 @@ export const Header = ({ onOpenEmailModal }: HeaderProps) => {
         <div className="flex items-center gap-6">
           <Link
             to="/"
-            className="hidden sm:block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+            className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
           >
             How It Works
           </Link>
           <Link
             to="/pricing"
-            className="hidden sm:block text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+            className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+
           >
             Pricing
           </Link>

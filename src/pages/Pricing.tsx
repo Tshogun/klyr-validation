@@ -171,7 +171,7 @@ const Pricing = () => {
                       className="w-full font-semibold"
                       onClick={() => {
                         if (tier.cta === "Contact Sales") {
-                          window.location.href = "mailto:sales@klyr.app?subject=Team Plan Inquiry";
+                          window.location.href = "mailto:nakulbadwaik@gmail.com?subject=Team Plan Inquiry";
                         } else {
                           openEmailModal(`pricing-${tier.name.toLowerCase()}`);
                         }
