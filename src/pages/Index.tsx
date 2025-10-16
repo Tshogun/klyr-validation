@@ -5,7 +5,9 @@ import { EmailCaptureModal } from "@/components/EmailCaptureModal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CalendarX, Clock, DollarSign, Play } from "lucide-react";
-import heroDashboard from "../assets/hero-dashboard.png";
+import heroDashboard from "@/assets/hero-dashboard.png";
+import dev1 from "@/assets/dev-1.jpg";
+import dev2 from "@/assets/dev-2.jpg";
 
 const Index = () => {
   const [emailModalOpen, setEmailModalOpen] = useState(false);
@@ -242,6 +244,52 @@ const Index = () => {
                   <p className="text-muted-foreground">We only analyze calendar metadata. No meeting content, no recordings, no privacy compromises.</p>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* About Devs */}
+        <section className="py-20 sm:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+              Meet the Team
+            </h2>
+            <p className="text-center text-muted-foreground mb-16 max-w-2xl mx-auto">
+              We're two developers who got tired of spending more time in meetings than actually building products.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+              <div className="text-center animate-slide-up">
+                <div className="relative w-48 h-48 mx-auto mb-6">
+                  <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full" />
+                  <img
+                    src={dev1}
+                    alt="Nakul Badwaik - Co-Founder & Lead Developer"
+                    className="relative rounded-full w-full h-full object-cover border-4 border-border shadow-xl"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Nakul Badwaik</h3>
+                <p className="text-primary font-semibold mb-4">Co-Founder & Lead Developer</p>
+                <p className="text-muted-foreground">
+                  Nakul is building Klyr's AI engine to help teams identify and eliminate unnecessary meetings before they happen.
+                </p>
+              </div>
+              
+              <div className="text-center animate-slide-up" style={{ animationDelay: "0.1s" }}>
+                <div className="relative w-48 h-48 mx-auto mb-6">
+                  <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full" />
+                  <img
+                    src={dev2}
+                    alt="Labdhi Soni - Co-Founder & Product Lead"
+                    className="relative rounded-full w-full h-full object-cover border-4 border-border shadow-xl"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Labdhi Soni</h3>
+                <p className="text-primary font-semibold mb-4">Co-Founder & Product Lead</p>
+                <p className="text-muted-foreground">
+                  Labdhi designed Klyr's intelligent notification system to protect focus time without burning bridges.
+                </p>
+              </div>
             </div>
           </div>
         </section>
