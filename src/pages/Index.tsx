@@ -99,8 +99,8 @@ const Index = () => {
           {/* Animated background elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-            <div className="absolute top-40 right-10 w-72 h-72 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style={{animationDelay: '2s'}}></div>
-            <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style={{animationDelay: '4s'}}></div>
+            <div className="absolute top-40 right-10 w-72 h-72 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-pink-500/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style={{ animationDelay: '4s' }}></div>
           </div>
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -113,8 +113,10 @@ const Index = () => {
               </h1>
 
               <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto animate-slide-up">
-                Klyr is your AI meeting gatekeeper. We analyze your calendar and prevent unnecessary meetings before they steal your focus time.
+                Klyr is your AI meeting gatekeeper — helping you skip pointless meetings and protect your focus time.
+                Join early and help shape how professionals reclaim their days 🧠.
               </p>
+
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4 animate-slide-up">
                 <Button
@@ -123,8 +125,9 @@ const Index = () => {
                   onClick={() => openEmailModal("hero-primary")}
                   className="text-lg px-8 py-6 h-auto font-semibold transform hover:scale-105 transition-all duration-200"
                 >
-                  Get Early Access → 50% Off Launch Price
+                  🚀 Join the Early Access Crew
                 </Button>
+
               </div>
 
               <div className="animate-fade-in">
@@ -348,18 +351,19 @@ const Index = () => {
                     Ready to Reclaim Your Time?
                   </h3>
                   <p className="text-lg text-muted-foreground mb-6">
-                    Join  professionals who are saying goodbye to meeting overload
+                    Join the early community of curious professionals taking control of their calendars 🗓️
                   </p>
+
                   <Button
                     variant="cta"
                     size="lg"
                     onClick={() => openEmailModal("how-it-works-cta")}
                     className="text-lg px-8 py-6 h-auto font-semibold transform hover:scale-105 transition-all duration-200"
                   >
-                    Get 50% Off Launch Price → Early Access
+                    🚀 Get Early Access & Shape Klyr
                   </Button>
                   <p className="text-sm text-muted-foreground mt-4">
-                    ⚡ 60-second setup • 🚀 Launching Q1 2026 • 🔒 Privacy-first
+                    ⚡ 60-second setup • 🌱 Built by founders, for builders • 🔒 Privacy-first
                   </p>
                 </CardContent>
               </Card>
@@ -527,10 +531,10 @@ const Index = () => {
               Ready to Take Back Your Calendar?
             </h2>
             <p className="text-xl text-muted-foreground mb-4 max-w-3xl mx-auto">
-              Join 2,500+ professionals who are taking back control of their time
+              🚀 Join 2,500+ early professionals already taking back control of their time.
             </p>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              ⚡ Get 50% off when we launch  •  🚀 Q1 2026  •  💯 Risk-free
+              💡 No discounts, no gimmicks — just early access, real feedback, and a front-row seat to the future of focus work.
             </p>
 
             <div className="max-w-md mx-auto">
@@ -541,16 +545,14 @@ const Index = () => {
                   onClick={() => openEmailModal("final-cta")}
                   className="text-lg px-8 py-6 h-auto font-semibold flex-1 transform hover:scale-105 transition-all duration-200"
                 >
-                  Get Early Access
+                  🌟 Join Early Access
                 </Button>
               </div>
-
               <p className="text-sm text-muted-foreground mt-6">
-                No spam. Unsubscribe anytime. We'll email you when Klyr launches.
+                No spam. Just one email when we launch — from the founders 💌
               </p>
-
               <p className="text-sm font-medium mt-4">
-                Launching Q1 2026 | Built for overwhelmed professionals
+                🚀 Launching Q1 2026 | Built with ❤️ by two tired college founders
               </p>
 
               {/* Trust Badges - NEW */}
