@@ -470,7 +470,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* About Devs - Original Section */}
+        {/* About Devs - Original Section 
         <section className="py-20 sm:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
@@ -486,7 +486,7 @@ const Index = () => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-              {/* Nakul */}
+              {/* Nakul *
               <div className="text-center animate-slide-up">
                 <div className="relative w-48 h-48 mx-auto mb-6">
                   <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full" />
@@ -503,7 +503,7 @@ const Index = () => {
                 </p>
               </div>
 
-              {/* Labdhi */}
+              {/* Labdhi 
               <div className="text-center animate-slide-up" style={{ animationDelay: "0.1s" }}>
                 <div className="relative w-48 h-48 mx-auto mb-6">
                   <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full" />
@@ -522,7 +522,7 @@ const Index = () => {
             </div>
           </div>
         </section>
-
+        */}
         {/* Final CTA - Enhanced */}
         <section className="py-20 sm:py-32 gradient-hero relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-pink-500/5"></div>
