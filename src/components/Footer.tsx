@@ -8,7 +8,7 @@ export const Footer = () => {
           </p>
           <div className="flex gap-6 text-sm">
             <a 
-              href="mailto:hello@klyr.app" 
+              href="mailto:nakulbadwaik@gmail.com" 
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               Contact
